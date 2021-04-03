@@ -1,13 +1,27 @@
 
 public class Main {
 	public static void main(String[] args) {
-		String[][] block = Blocks.fileToHexBlock("./files/message_short");
-		print2DArr(block);
-		System.out.println();
-		Blocks.swipeIndexex(block);
-		print2DArr(block);
 
+		// read M
+		String[][] msg = Blocks.fileToHexBlock("./files/message_short");
+		print("M:");
+		print2DArr(msg);
+
+		// swipe indexes
+		print("M - Swipe Indexes:");
+		Blocks.swipeIndexex(msg);
+		print2DArr(msg);
+
+		// read key:
+		String[][] key = Blocks.fileToHexBlock("./files/key_short");
+		print("Key:");
+		print2DArr(key);
+
+		String[][] roundKey = Blocks.addRoundKey(msg, key);
+		print("Round Key:");
+		print2DArr(roundKey);
 		
+
 
 	}
 
@@ -34,6 +48,7 @@ public class Main {
 			}
 			System.out.println();
 		}
+		System.out.println();
 	}
 
 
