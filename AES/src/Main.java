@@ -1,57 +1,34 @@
-import java.io.*;
-import java.nio.file.Files;
-
 
 public class Main {
 	public static void main(String[] args) {
-
-		String[][] block = toHexBlock("./files/message_short");
+		String[][] block = Blocks.fileToHexBlock("./files/message_short");
 		print2DArr(block);
 		System.out.println();
-		swipeIndexex(block);
+		Blocks.swipeIndexex(block);
 		print2DArr(block);
+
+		String b1 = block[0][0];
+		String b2 = block[0][1];
+
+		int num1 = Integer.parseInt(b1, 16);
+		int num2 = Integer.parseInt(b2, 16);
+		print(num1 +" " + num2);
+
+
+		Basics.printByte(Basics.hexToByte(b1));
+		Basics.printByte(Basics.hexToByte(b2));
+
+		byte xor = (byte)(num1 ^ num2);
+		print(xor);
+
 	}
 
-	public static void swipeIndexex(String[][] block){
-		int rows = block.length, cols = block[0].length;
-		for(int row = 0; row < rows; row++) {
-			for(int col = row + 1; col < cols; col++) {
-				swipe(block, row, col);
-			}
-		}
-	}
-
-	public static void swipe(String[][] block, int i, int j) {
-		String temp = block[i][j];
-		block[i][j] = block[j][i];
-		block[j][i] = temp;
-	}
 
 
 
-	public static String[][] toHexBlock(String path) {
-		String[][] s = new String[4][4];
-		File file = new File(path);
-		int i=0,j=0;
-		byte[] bytes;
-		try {
-			bytes = Files.readAllBytes(file.toPath());
-			if (bytes != null) 
-				for (byte b:bytes) {
-					if (i==4) {
-						i=0;
-						j++;
-					}
-					final String hexString = Integer.toHexString(b & 0xff);
-					if(hexString.length()==1)
-						s[i][j] = "0";
-					s[i][j] = hexString;
-					i++;
-				}
-		} catch (IOException e) {}
-		return s;
-	}
 
+
+	//	********* Additional Functions ********* //
 	public static void print(Object o) {
 		System.out.println(o.toString());
 	}
