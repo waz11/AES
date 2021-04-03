@@ -3,17 +3,33 @@ import java.nio.file.Files;
 
 
 public class Main {
-//	private static final char[] HEX_ARRAY = "0123456789ABCDEF".toCharArray();
-
 	public static void main(String[] args) {
 
-		String[][] s = toHexString("./files/message_short");
-		print2DArr(s);
-		
-		
+		String[][] block = toHexBlock("./files/message_short");
+		print2DArr(block);
+		System.out.println();
+		swipeIndexex(block);
+		print2DArr(block);
 	}
 
-	public static String[][] toHexString(String path) {
+	public static void swipeIndexex(String[][] block){
+		int rows = block.length, cols = block[0].length;
+		for(int row = 0; row < rows; row++) {
+			for(int col = row + 1; col < cols; col++) {
+				swipe(block, row, col);
+			}
+		}
+	}
+
+	public static void swipe(String[][] block, int i, int j) {
+		String temp = block[i][j];
+		block[i][j] = block[j][i];
+		block[j][i] = temp;
+	}
+
+
+
+	public static String[][] toHexBlock(String path) {
 		String[][] s = new String[4][4];
 		File file = new File(path);
 		int i=0,j=0;
@@ -44,7 +60,7 @@ public class Main {
 		for(Object o:arr)
 			System.out.print(o+" ");
 	}
-	
+
 	public static void print2DArr(String[][] arr) {
 		for (int i = 0; i < arr.length; i++) {
 			for (int j = 0; j < arr[0].length; j++) {
