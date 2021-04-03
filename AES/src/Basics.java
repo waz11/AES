@@ -1,5 +1,6 @@
 
 public class Basics {
+	//	**CONVERTINGS:
 	public static String byteToHex(byte b) {
 		String hexString = Integer.toHexString(b & 0xff);
 		if(hexString.length()==1)
@@ -13,6 +14,15 @@ public class Basics {
 		return (byte) ((firstDigit << 4) + secondDigit);
 	}
 
+	//	**OPERTAIONS:
+	public static String xorHexes(String hex1, String hex2) {
+		int num1 = Integer.parseInt(hex1, 16);
+		int num2 = Integer.parseInt(hex2, 16);
+		byte xor = (byte)(num1 ^ num2);
+		return Basics.byteToHex(xor);
+	}
+
+	//	**PRINTS:
 	public static void printByte(byte b) {
 		byte b1 = (byte) b;
 		String s1 = String.format("%8s", Integer.toBinaryString(b1 & 0xFF)).replace(' ', '0');

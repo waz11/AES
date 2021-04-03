@@ -7,19 +7,7 @@ public class Main {
 		Blocks.swipeIndexex(block);
 		print2DArr(block);
 
-		String b1 = block[0][0];
-		String b2 = block[0][1];
-
-		int num1 = Integer.parseInt(b1, 16);
-		int num2 = Integer.parseInt(b2, 16);
-		print(num1 +" " + num2);
-
-
-		Basics.printByte(Basics.hexToByte(b1));
-		Basics.printByte(Basics.hexToByte(b2));
-
-		byte xor = (byte)(num1 ^ num2);
-		print(xor);
+		
 
 	}
 

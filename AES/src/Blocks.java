@@ -11,6 +11,21 @@ public class Blocks {
 			}
 		}
 	}
+	
+	public static String[][] xorHexeBlocks(String[][] block1, String[][] block2){
+		int rows = block1.length, cols = block1[0].length;
+		String[][] xorMatrix = new String[rows][cols];
+		for(int row = 0; row < rows; row++) {
+			for(int col = row + 1; col < cols; col++) {
+				String b1 = block1[row][col];
+				String b2 = block1[row][col];
+				xorMatrix[row][col] = Basics.xorHexes(b1,b2);
+			}
+		}
+		return xorMatrix;
+	}
+	
+	
 
 	public static String[][] fileToHexBlock(String path) {
 		String[][] s = new String[4][4];
