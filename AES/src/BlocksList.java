@@ -35,7 +35,7 @@ public class BlocksList {
 						block = new Block();
 						this.addBlock(block);
 					}
-					String hexString = Basics.byteToHex(b);
+					String hexString = Bases.byteToHex(b);
 					block.add(hexString);
 				}
 			}
@@ -61,7 +61,7 @@ public class BlocksList {
 		}
 	}
 
-	public void swipeIndexes() {
+	public void swapeIndexes() {
 		for(Block block:this.blocks) 
 			block.swipeIndexex();
 	}

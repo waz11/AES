@@ -76,7 +76,7 @@ public class Block {
 		for (int row = 0; row < this.rows; row++) {
 			for (int col = 0; col < this.cols; col++) {
 				String hex = this.getValue(row, col);
-				byte b = Basics.hexToByte(hex);
+				byte b = Bases.hexToByte(hex);
 				res[row*4+col] = b;
 			}
 		}

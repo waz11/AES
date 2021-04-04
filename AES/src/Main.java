@@ -1,8 +1,7 @@
-import java.io.FileOutputStream;
 
 public class Main {
+	
 	public static void main(String[] args) {
-
 		// read M
 		BlocksList msg = new BlocksList("./files/message_long");
 		print("M:");
@@ -12,7 +11,7 @@ public class Main {
 		msg.writeToByteFile("./files/results/tring1");
 
 		// swipe indexes
-		msg.swipeIndexes();
+		msg.swapeIndexes();
 		print("M - Swipe Indexes:");
 		msg.print();
 
@@ -21,7 +20,7 @@ public class Main {
 		print("Key:");
 		key.print();
 
-		BlocksList roundKey = AES.addRoundKey(msg, key);
+		BlocksList roundKey = AES1.addRoundKey(msg, key);
 		print("Round Key:");
 		roundKey.print();
 

@@ -1,5 +1,5 @@
 
-public class Basics {
+public class Bases {
 	//	**CONVERTINGS:
 	public static String byteToHex(byte b) {
 		String hexString = Integer.toHexString(b & 0xff);
@@ -19,7 +19,7 @@ public class Basics {
 		int num1 = Integer.parseInt(hex1, 16);
 		int num2 = Integer.parseInt(hex2, 16);
 		byte xor = (byte)(num1 ^ num2);
-		return Basics.byteToHex(xor);
+		return Bases.byteToHex(xor);
 	}
 
 	//	**PRINTS:
@@ -31,7 +31,7 @@ public class Basics {
 
 	public static void printByteArray(byte[] arr) {
 		for(byte b:arr)
-			Basics.printByte(b);
+			Bases.printByte(b);
 	}
 
 
