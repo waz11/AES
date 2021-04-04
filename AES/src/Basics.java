@@ -29,6 +29,10 @@ public class Basics {
 		System.out.println(b+" <-> "+s1); // 10000001
 	}
 
+	public static void printByteArray(byte[] arr) {
+		for(byte b:arr)
+			Basics.printByte(b);
+	}
 
 
 	//	********* Additional Functions ********* //

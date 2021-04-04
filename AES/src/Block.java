@@ -70,6 +70,18 @@ public class Block {
 		}
 		System.out.println();
 	}
+	
+	public byte[] blockToBytes() {
+		byte[] res = new byte[16];
+		for (int row = 0; row < this.rows; row++) {
+			for (int col = 0; col < this.cols; col++) {
+				String hex = this.getValue(row, col);
+				byte b = Basics.hexToByte(hex);
+				res[row*4+col] = b;
+			}
+		}
+		return res;
+	}
 
 	
 	//	********* Additional Functions ********* //
