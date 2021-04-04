@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
@@ -7,12 +8,12 @@ import java.util.List;
 public class BlocksList {
 	private List<Block> blocks;
 	private int size;
-	
+
 	public BlocksList() {
 		this.blocks = new ArrayList<>();
 		this.size = 0;
 	}
-	
+
 	public Block getBlock(int i) {
 		if(i>=size) return null;
 		return blocks.get(i);
@@ -59,10 +60,25 @@ public class BlocksList {
 			i++;
 		}
 	}
-	
+
 	public void swipeIndexes() {
 		for(Block block:this.blocks) 
 			block.swipeIndexex();
+	}
+
+	public void writeToByteFile(String path) {
+		for(int i=0; i<this.size; i++) {
+			byte[] b = this.getBlock(i).blockToBytes();
+			writeByteToFile(path, b);
+		}
+	}
+	
+	private static void writeByteToFile(String path, byte[] data) {
+		//save byte array to file
+		try (FileOutputStream fos = new FileOutputStream(path, true)) {
+			fos.write(data);
+			fos.close();
+		} catch (Exception e) {}
 	}
 
 }
