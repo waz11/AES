@@ -3,24 +3,24 @@ public class Main {
 	public static void main(String[] args) {
 
 		// read M
-		String[][] msg = Blocks.fileToHexBlock("./files/message_short");
+		BlocksList msg = new BlocksList("./files/message_long");
 		print("M:");
-		print2DArr(msg);
+		msg.print();
 
 		// swipe indexes
+		msg.swipeIndexes();
 		print("M - Swipe Indexes:");
-		Blocks.swipeIndexex(msg);
-		print2DArr(msg);
+		msg.print();
 
 		// read key:
-		String[][] key = Blocks.fileToHexBlock("./files/key_short");
+		BlocksList key = new BlocksList("./files/key_short");
 		print("Key:");
-		print2DArr(key);
+		key.print();
 
-		String[][] roundKey = Blocks.addRoundKey(msg, key);
+		BlocksList roundKey = AES.addRoundKey(msg, key);
 		print("Round Key:");
-		print2DArr(roundKey);
-		
+		roundKey.print();
+
 
 
 	}
