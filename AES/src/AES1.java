@@ -1,12 +1,12 @@
 
 public class AES1 {
 	
-	public static BlocksList enc(BlocksList msg, BlocksList key) {
+	public static BlocksList enc(BlocksList msg, Block key) {
 		msg.swapeIndexes();
 		return addRoundKey(msg, key);
 	}
 	
-	public static BlocksList dec(BlocksList msg, BlocksList key) {
+	public static BlocksList dec(BlocksList msg, Block key) {
 		addRoundKey(msg, key);
 		msg.swapeIndexes();
 		return msg;
@@ -18,10 +18,10 @@ public class AES1 {
 		block.swipeIndexex();
 	}
 	
-	public static BlocksList addRoundKey(BlocksList msg, BlocksList key) {
+	public static BlocksList addRoundKey(BlocksList msg, Block key) {
 		BlocksList res = new BlocksList();
 		for(int i=0; i<msg.getSize(); i++) {
-			Block b = addRoundKey(msg.getBlock(i), key.getBlock(i%key.getSize()));
+			Block b = addRoundKey(msg.getBlock(i), key);
 			res.addBlock(b);
 		}
 		return res;
@@ -39,5 +39,9 @@ public class AES1 {
 		}
 		return xorMatrix;
 	}
+	
+	
+	
+	
 
 }

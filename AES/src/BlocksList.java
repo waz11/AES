@@ -72,7 +72,7 @@ public class BlocksList {
 			writeByteToFile(path, b);
 		}
 	}
-	
+
 	private static void writeByteToFile(String path, byte[] data) {
 		//save byte array to file
 		try (FileOutputStream fos = new FileOutputStream(path, true)) {
@@ -80,5 +80,15 @@ public class BlocksList {
 			fos.close();
 		} catch (Exception e) {}
 	}
+
+
+	public boolean isEquals(BlocksList other) {
+		for(int i=0; i<size; i++) {
+			if(!(this.getBlock(i).isEquals(other.getBlock(i))))
+					return false;
+		}
+		return true;
+	}
+
 
 }

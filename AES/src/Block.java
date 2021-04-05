@@ -83,6 +83,18 @@ public class Block {
 		return res;
 	}
 
+	public boolean isEquals(Block other) {
+		for(int row=0; row<rows; row++) {
+			for(int col=0; col<cols; col++) {
+				String val1 = this.getValue(row, col);
+				String val2 = other.getValue(row, col);
+				if(!(val1.equals(val2))) return false;
+			}
+		}
+		return true;
+	}
+	
+
 	
 	//	********* Additional Functions ********* //
 	private void swipe(int i, int j) {
