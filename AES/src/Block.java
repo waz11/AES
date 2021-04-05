@@ -19,7 +19,7 @@ public class Block {
 			this.increaseIndex();
 		}
 	}
-	
+
 	public String getValue(int row, int col) {
 		return values[row][col];
 	}
@@ -51,7 +51,7 @@ public class Block {
 	public int getCols() {
 		return cols;
 	}
-	
+
 	public void swipeIndexex(){
 		for(int row = 0; row < this.rows; row++) {
 			for(int col = row + 1; col < this.cols; col++) {
@@ -70,7 +70,13 @@ public class Block {
 		}
 		System.out.println();
 	}
-	
+
+	public void printBytesDetails() {
+		byte[] b = this.blockToBytes();
+		Bases.printBytesDetails(b);
+
+	}
+
 	public byte[] blockToBytes() {
 		byte[] res = new byte[16];
 		for (int row = 0; row < this.rows; row++) {
@@ -93,14 +99,14 @@ public class Block {
 		}
 		return true;
 	}
-	
 
-	
+
+
 	//	********* Additional Functions ********* //
 	private void swipe(int i, int j) {
 		String temp = this.values[i][j];
 		this.values[i][j] = this.values[j][i];
 		this.values[j][i] = temp;
 	}
-	
+
 }

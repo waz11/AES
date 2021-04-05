@@ -7,9 +7,9 @@ public class AES1 {
 	}
 	
 	public static BlocksList dec(BlocksList msg, Block key) {
-		addRoundKey(msg, key);
-		msg.swapeIndexes();
-		return msg;
+		BlocksList block = addRoundKey(msg, key);
+		block.swapeIndexes();
+		return block;
 	}
 
 	

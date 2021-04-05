@@ -1,3 +1,4 @@
+import java.nio.charset.StandardCharsets;
 
 public class Bases {
 	//	**CONVERTINGS:
@@ -9,6 +10,7 @@ public class Bases {
 	}
 
 	public static byte hexToByte(String hexString) {
+		if(hexString.length() < 2) return (byte)0;
 		int firstDigit = toDigit(hexString.charAt(0));
 		int secondDigit = toDigit(hexString.charAt(1));
 		return (byte) ((firstDigit << 4) + secondDigit);
@@ -33,7 +35,24 @@ public class Bases {
 		for(byte b:arr)
 			Bases.printByte(b);
 	}
+	
+	public static void printBytesArr(byte[] b) {
+		String string = new String(b, StandardCharsets.UTF_8);
+		System.out.println(string);
+	}
+	
+	public static void printBytesDetails(byte[] bytes) {
+		for(byte b:bytes)
+			printByte(b);
+		System.out.println();
+	}
 
+	public static void printCharsByBytesFile(byte[] bytes) {
+		String str = "";
+		for(byte b:bytes) 
+			str += (char)b;
+		System.out.println(str);
+	}
 
 	//	********* Additional Functions ********* //
 	private static int toDigit(char hexChar) {
@@ -44,5 +63,6 @@ public class Bases {
 		}
 		return digit;
 	}
+	
 
 }

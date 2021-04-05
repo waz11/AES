@@ -65,8 +65,22 @@ public class BlocksList {
 		for(Block block:this.blocks) 
 			block.swipeIndexex();
 	}
+	
+	
+	public void printBytes() {
+		for(int i=0; i<this.size; i++) {
+			byte[] b = this.getBlock(i).blockToBytes();
+			Bases.printBytesArr(b);
+		}
+	}
+	
+	
+	public void printBytesDetails() {
+		for(Block b:this.blocks)
+			b.printBytesDetails();
+	}
 
-	public void writeToByteFile(String path) {
+	public void writeToBytesFile(String path) {
 		for(int i=0; i<this.size; i++) {
 			byte[] b = this.getBlock(i).blockToBytes();
 			writeByteToFile(path, b);
@@ -74,6 +88,11 @@ public class BlocksList {
 	}
 
 	private static void writeByteToFile(String path, byte[] data) {
+		//clear previous content from file
+		try (FileOutputStream fos = new FileOutputStream(path)) {
+			fos.write("".getBytes());
+			fos.close();
+		} catch (Exception e) {}
 		//save byte array to file
 		try (FileOutputStream fos = new FileOutputStream(path, true)) {
 			fos.write(data);
