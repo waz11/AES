@@ -56,10 +56,7 @@ public class BlocksList {
 	}
 	public BlocksList xor(Block other) {
 		BlocksList result = new BlocksList();
-		int i=0;
-		System.out.println(this.size);
 		for(Block block:this.blocks) {
-			System.out.println(i++);
 			result.addBlock(block.xor(other));
 		}
 		return result;

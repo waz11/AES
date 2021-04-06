@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
@@ -12,11 +14,18 @@ public class Main {
 		String enc_result_path = "./files/results/result_enc";
 		String dec_result_path = "./files/results/result_dec";
 
+		List tests = new ArrayList<>();
+		
+		tests.add(new Test(key_short, message_short, cipher_short));
+		tests.add(new Test(key_long, message_long, cipher_long));
 
-//		Test.test_Enc(key_short, message_short, cipher_short, enc_result_path);
-//		Test.test_Dec(key_short, enc_result_path, message_short, dec_result_path);
-//		Test.test_Dec(key_short, cipher_short, message_short, dec_result_path);
-		Test.test_Dec(key_short, cipher_long, message_long, dec_result_path);
+		for(int i=0 ; i<tests.size(); i++) {
+			boolean ans = ((Test) tests.get(i)).run();
+			System.out.println("test no " + (i+1) + " " + ans);
+		}
+		
+
+		
 	}
 
 	public static void print(Object o) {
