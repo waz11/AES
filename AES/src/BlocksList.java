@@ -119,7 +119,7 @@ public class BlocksList {
 	}
 	private void createResultsDirectory() {
 		String PATH = "./files/";
-		String directoryName = PATH.concat("results");
+		String directoryName = PATH.concat("output");
 
 		File directory = new File(directoryName);
 		if (! directory.exists()){

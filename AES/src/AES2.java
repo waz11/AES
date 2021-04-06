@@ -12,7 +12,6 @@ public class AES2 {
 		
 		return result;
 	}
-	
 	public static BlocksList dec(String path_cipher, String Path_key, String path_result) {
 		BlocksList cipher = new BlocksList(path_cipher);
 		BlocksList key = new BlocksList(Path_key);
@@ -24,13 +23,16 @@ public class AES2 {
 		
 		return result;
 	}
-	
+
 	public static BlocksList enc(BlocksList msg, Block key1, Block key2) {
 		return AES1.enc(AES1.enc(msg, key1),key2);
 	}
-	
 	public static BlocksList dec(BlocksList msg, Block key1, Block key2) {
 		return AES1.dec(AES1.dec(msg, key2),key1);
 	}
 	
+	public static BlocksList breakAlgorithm(String msg, String cipher, String output_path) {
+		BlocksList key = new BlocksList();
+		return key;
+	}
 }
