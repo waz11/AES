@@ -5,7 +5,7 @@ public class AES2 {
 		BlocksList msg = new BlocksList(path_msg);
 		BlocksList key = new BlocksList(Path_key);
 		Block key1 = key.getBlock(0);
-		Block key2 = key.getBlock(0);
+		Block key2 = key.getBlock(1);
 		
 		BlocksList result = AES1.enc(AES1.enc(msg, key1),key2);
 		result.writeToBytesFile(path_result);
@@ -17,7 +17,7 @@ public class AES2 {
 		BlocksList cipher = new BlocksList(path_cipher);
 		BlocksList key = new BlocksList(Path_key);
 		Block key1 = key.getBlock(0);
-		Block key2 = key.getBlock(0);
+		Block key2 = key.getBlock(1);
 
 		BlocksList result = AES1.dec(AES1.dec(cipher, key2),key1);
 		result.writeToBytesFile(path_result);

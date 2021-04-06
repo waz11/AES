@@ -33,7 +33,7 @@ public class Block {
 	public void changeValue(int row, int col, String value) {
 		values[row][col] = value;
 	}
-	public void swipeIndexex(){
+	public void swapeIndexex(){
 		for(int row = 0; row < this.rows; row++) {
 			for(int col = row + 1; col < this.cols; col++) {
 				swipe(row, col);
@@ -104,7 +104,7 @@ public class Block {
 			}
 			System.out.println();
 		}
-		System.out.println();
+//		System.out.println();
 	}
 	public void printBytesDetails() {
 		byte[] b = this.blockToBytes();

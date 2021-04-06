@@ -14,24 +14,30 @@ public class Test {
 		System.out.println("Test- AES2 - Enc:");
 		BlocksList expected_cipher = new BlocksList(expected_cipher_path);
 		BlocksList this_cipher = AES2.enc(msg_path, key_path, result_enc_path);
+		
 		System.out.println("this cipher:");
 		this_cipher.print();
 		System.out.println("original cipher:");
 		expected_cipher.print();
 
-		System.out.println(this_cipher.equals(expected_cipher)+"\n");
+		System.out.println(this_cipher.isEquals(expected_cipher));
+		System.out.println();
 	}
 
 	public static void test_Dec(String key_path, String cipher_path, String expected_msg_path, String result_dec_path) {
 		System.out.println("Test- AES2 - Dec:");
 		BlocksList expected_msg = new BlocksList(expected_msg_path);
 		BlocksList this_msg = AES2.dec(cipher_path, key_path, result_dec_path);
-		System.out.println("this msg:");
+		
+		System.out.print("this msg: ");
+		this_msg.printBytes();
 		this_msg.print();
-		System.out.println("original msg:");
+		System.out.print("original msg: ");
+		expected_msg.printBytes();
 		expected_msg.print();
 
-		System.out.println(this_msg.equals(expected_msg));
+		System.out.println(this_msg.isEquals(expected_msg));
+		System.out.println();
 	}
 
 
