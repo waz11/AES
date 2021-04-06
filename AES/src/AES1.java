@@ -12,13 +12,8 @@ public class AES1 {
 		return blocks;
 	}
 
-	public static BlocksList addRoundKey(BlocksList msg, Block key) {
+	private static BlocksList addRoundKey(BlocksList msg, Block key) {
 		return msg.xor(key);
 	}
-
-	
-	
-	
-	
 
 }

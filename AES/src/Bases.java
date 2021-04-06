@@ -3,12 +3,8 @@ import java.nio.charset.StandardCharsets;
 public class Bases {
 	//	**CONVERTINGS:
 	public static String byteToHex(byte b) {
-		String hexString = Integer.toHexString(b & 0xff);
-//		if(hexString.length()==1)
-//			hexString = "0";
-		return hexString;
+		return Integer.toHexString(b & 0xff);
 	}
-
 	public static byte hexToByte(String hexString) {
 		if(hexString.length() < 2) return (byte)toDigit(hexString.charAt(0));
 		int firstDigit = toDigit(hexString.charAt(0));
@@ -25,50 +21,38 @@ public class Bases {
 	}
 
 	//	**PRINTS:
-	public static void printByte(byte b) {
-		byte b1 = (byte) b;
-		String s1 = String.format("%8s", Integer.toBinaryString(b1 & 0xFF)).replace(' ', '0');
-		System.out.println(b+" <-> "+s1); // 10000001
+	public static void printHexAsByte(String hex) {
+		byte b = hexToByte(hex);
+		printByte(b);
 	}
-
-	public static void printByteArray(byte[] arr) {
-		for(byte b:arr)
-			Bases.printByte(b);
-	}
-	
-	public static void printBytesArr(byte[] b) {
+	public static void printBytes(byte[] b) {
 		String string = new String(b, StandardCharsets.UTF_8);
 		System.out.println(string);
 	}
-	
 	public static void printBytesDetails(byte[] bytes) {
 		for(byte b:bytes)
 			printByte(b);
 		System.out.println();
 	}
-
-	public static void printCharsByBytesFile(byte[] bytes) {
+	public static void printAsChars(byte[] bytes) {
 		String str = "";
 		for(byte b:bytes) 
 			str += (char)b;
 		System.out.println(str);
 	}
 
-	public static void printHexAsByte(String hex) {
-		byte b = hexToByte(hex);
-		printByte(b);
-	}
-	
-	
 	//	********* Additional Functions ********* //
 	private static int toDigit(char hexChar) {
 		int digit = Character.digit(hexChar, 16);
-		if(digit == -1) {
-			throw new IllegalArgumentException(
-					"Invalid Hexadecimal Character: "+ hexChar);
-		}
+		if(digit == -1) {}
 		return digit;
 	}
-	
-
+	//	public static void printByteArray(byte[] arr) {
+	//		for(byte b:arr) Bases.printByte(b);
+	//	}
+	private static void printByte(byte b) {
+		byte b1 = (byte) b;
+		String s1 = String.format("%8s", Integer.toBinaryString(b1 & 0xFF)).replace(' ', '0');
+		System.out.println(b+" <-> "+s1);
+	}
 }
