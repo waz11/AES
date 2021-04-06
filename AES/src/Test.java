@@ -9,71 +9,35 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class Test {
-	static String result_enc = "./files/results/result_enc";
-	static String result_dec = "./files/results/result_dec";
 
-	public static void test_aes1(String key_path, String msg_path, String Cipher_path) {
-		System.out.println("   Test - AES1:");
-		BlocksList msg = new BlocksList(msg_path);
-		BlocksList key = new BlocksList(key_path);
-		Block key1 = key.getBlock(0);
+	public static void test_Enc(String key_path, String msg_path, String expected_cipher_path, String result_enc_path) {
+		System.out.println("Test- AES2 - Enc:");
+		BlocksList expected_cipher = new BlocksList(expected_cipher_path);
+		BlocksList this_cipher = AES2.enc(msg_path, key_path, result_enc_path);
+		System.out.println("this cipher:");
+		this_cipher.print();
+		System.out.println("original cipher:");
+		expected_cipher.print();
 
-		//enc:
-		BlocksList enc = AES1.enc(msg, key1);
-		//		enc.print();
-		enc.writeToBytesFile(result_enc);
-		//dec:
-		BlocksList cipher = new BlocksList(result_enc);
-		BlocksList dec = AES1.dec(cipher , key1);
-		//		dec.print();
-		dec.writeToBytesFile(result_dec);
-
-		System.out.print("original msg: ");
-		read(msg_path);
-		//		msg.print();
-		//		printFile(message_short);
-
-		System.out.print("after dec:    ");
-		read(result_dec);
-		//		dec.print();
-		//		printFile(res1_msg);
-		System.out.println();
+		System.out.println(this_cipher.equals(expected_cipher)+"\n");
 	}
 
-	public static void test_aes2(String key_path, String msg_path, String Cipher_path) {
-		System.out.println("   Test - AES2:");
-		BlocksList msg = new BlocksList(msg_path);
-		BlocksList key = new BlocksList(key_path);
-		Block key1 = key.getBlock(0);
-		Block key2 = key.getBlock(0);
+	public static void test_Dec(String key_path, String cipher_path, String expected_msg_path, String result_dec_path) {
+		System.out.println("Test- AES2 - Dec:");
+		BlocksList expected_msg = new BlocksList(expected_msg_path);
+		BlocksList this_msg = AES2.dec(cipher_path, key_path, result_dec_path);
+		System.out.println("this msg:");
+		this_msg.print();
+		System.out.println("original msg:");
+		expected_msg.print();
 
-		BlocksList original_cipher = new BlocksList(msg_path);
-
-		//enc:
-		BlocksList enc = AES2.enc(msg, key1, key2);
-		//				enc.print();
-		enc.writeToBytesFile(result_enc);
-		//dec:
-		BlocksList cipher = new BlocksList(result_enc);
-		BlocksList dec = AES2.dec(cipher, key1, key2);
-		//	dec.print();
-		dec.writeToBytesFile(result_dec);
-
-		System.out.print("original msg: ");
-		read(msg_path);
-		// msg.print();
-		// printFile(message_short);
-
-		System.out.print("after dec:    ");
-		read(result_dec);
-		// dec.print();
-		//	printFile(res1_msg);
-
-		System.out.println(cipher.equals(original_cipher));
-
+		System.out.println(this_msg.equals(expected_msg));
 	}
 
 
+
+
+	//	Additional Functions:
 	public static void read(String path) {
 		Reader bytestream;
 		try {
@@ -88,8 +52,6 @@ public class Test {
 		catch (IOException e) {}
 
 	}
-
-
 	public static void printFile(String path) {
 		byte[] bytes;
 		try {
