@@ -60,6 +60,18 @@ public class Block {
 		}
 	}
 
+	public Block xor(Block other) {
+		Block result = new Block();
+		for(int row = 0; row < this.rows; row++) {
+			for(int col = 0; col < this.cols; col++) {
+				String b1 = this.getValue(row, col);
+				String b2 = other.getValue(row, col);
+				result.add(Bases.xorHexes(b1,b2));
+			}
+		}
+		return result;
+	}
+
 	public void print() {
 		for (int i = 0; i < this.rows; i++) {
 			for (int j = 0; j < this.cols; j++) {

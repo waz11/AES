@@ -4,13 +4,13 @@ public class Bases {
 	//	**CONVERTINGS:
 	public static String byteToHex(byte b) {
 		String hexString = Integer.toHexString(b & 0xff);
-		if(hexString.length()==1)
-			hexString = "0";
+//		if(hexString.length()==1)
+//			hexString = "0";
 		return hexString;
 	}
 
 	public static byte hexToByte(String hexString) {
-		if(hexString.length() < 2) return (byte)0;
+		if(hexString.length() < 2) return (byte)toDigit(hexString.charAt(0));
 		int firstDigit = toDigit(hexString.charAt(0));
 		int secondDigit = toDigit(hexString.charAt(1));
 		return (byte) ((firstDigit << 4) + secondDigit);
@@ -54,6 +54,12 @@ public class Bases {
 		System.out.println(str);
 	}
 
+	public static void printHexAsByte(String hex) {
+		byte b = hexToByte(hex);
+		printByte(b);
+	}
+	
+	
 	//	********* Additional Functions ********* //
 	private static int toDigit(char hexChar) {
 		int digit = Character.digit(hexChar, 16);

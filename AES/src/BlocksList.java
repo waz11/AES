@@ -19,6 +19,7 @@ public class BlocksList {
 		return blocks.get(i);
 	}
 
+
 	public BlocksList(String path) {
 		this.blocks = new ArrayList<>();
 		this.size = 0;
@@ -52,6 +53,14 @@ public class BlocksList {
 		return this.size;
 	}
 
+	public BlocksList xor(Block other) {
+		BlocksList result = new BlocksList();
+		for(Block block:this.blocks) {
+			result.addBlock(block.xor(other));
+		}
+		return result;
+	}
+
 	public void print() {
 		int i=1;
 		for(Block block:this.blocks) {
@@ -65,34 +74,37 @@ public class BlocksList {
 		for(Block block:this.blocks) 
 			block.swipeIndexex();
 	}
-	
-	
+
+
 	public void printBytes() {
 		for(int i=0; i<this.size; i++) {
 			byte[] b = this.getBlock(i).blockToBytes();
 			Bases.printBytesArr(b);
 		}
 	}
-	
-	
+
+
 	public void printBytesDetails() {
 		for(Block b:this.blocks)
 			b.printBytesDetails();
 	}
 
 	public void writeToBytesFile(String path) {
+		clearFile(path);
 		for(int i=0; i<this.size; i++) {
 			byte[] b = this.getBlock(i).blockToBytes();
 			writeByteToFile(path, b);
 		}
 	}
 
-	private static void writeByteToFile(String path, byte[] data) {
-		//clear previous content from file
+	public static void clearFile(String path) {
 		try (FileOutputStream fos = new FileOutputStream(path)) {
 			fos.write("".getBytes());
 			fos.close();
 		} catch (Exception e) {}
+	}
+
+	private static void writeByteToFile(String path, byte[] data) {
 		//save byte array to file
 		try (FileOutputStream fos = new FileOutputStream(path, true)) {
 			fos.write(data);
@@ -104,7 +116,7 @@ public class BlocksList {
 	public boolean isEquals(BlocksList other) {
 		for(int i=0; i<size; i++) {
 			if(!(this.getBlock(i).isEquals(other.getBlock(i))))
-					return false;
+				return false;
 		}
 		return true;
 	}
