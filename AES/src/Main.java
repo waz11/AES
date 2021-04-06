@@ -18,10 +18,14 @@ public class Main {
 
 	static String res1_cipher = "./files/ronald/res1_cipher";
 	static String res1_msg = "./files/ronald/res1_msg";
+	
+	static String res2_cipher = "./files/ronald/res2_cipher";
+	static String res2_msg = "./files/ronald/res2_msg";
 
-	static BlocksList msg = new BlocksList(message_long);
+	static BlocksList msg = new BlocksList(message_short);
 	static BlocksList key = new BlocksList(key_short);
 	static Block key1 = key.getBlock(0);
+	static Block key2 = key.getBlock(1);
 
 	public static void main(String[] args) {
 		test_aes1();
@@ -91,7 +95,7 @@ public class Main {
 		dec.writeToBytesFile(res1_msg);
 
 		System.out.print("original msg: ");
-		read(message_long);
+		read(message_short);
 //		msg.print();
 //		printFile(message_short);
 		
@@ -100,7 +104,28 @@ public class Main {
 //		dec.print();
 //		printFile(res1_msg);
 
+	}
+	
+	public static void test_aes2() {
+		//enc:
+		BlocksList enc = AES2.enc(msg, key1, key2);
+//		enc.print();
+		enc.writeToBytesFile(res2_cipher);
+		//dec:
+		BlocksList aes2_cipher = new BlocksList(res2_cipher);
+		BlocksList dec = AES1.dec(aes2_cipher, key1);
+//		dec.print();
+		dec.writeToBytesFile(res1_msg);
 
+		System.out.print("original msg: ");
+		read(message_short);
+//		msg.print();
+//		printFile(message_short);
+		
+		System.out.print("after dec:    ");
+		read(res2_msg);
+//		dec.print();
+//		printFile(res1_msg);
 
 	}
 
