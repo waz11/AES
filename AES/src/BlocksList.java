@@ -97,6 +97,7 @@ public class BlocksList {
 
 	//files:
 	public void writeToBytesFile(String path) {
+		createResultsDirectory();
 		clearFile(path);
 		for(int i=0; i<this.size; i++) {
 			byte[] b = this.getBlock(i).blockToBytes();
@@ -115,6 +116,15 @@ public class BlocksList {
 			fos.write(data);
 			fos.close();
 		} catch (Exception e) {}
+	}
+	private void createResultsDirectory() {
+		String PATH = "./files/";
+		String directoryName = PATH.concat("results");
+
+		File directory = new File(directoryName);
+		if (! directory.exists()){
+			directory.mkdir();
+		}
 	}
 
 }
