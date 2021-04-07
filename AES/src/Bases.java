@@ -50,7 +50,7 @@ public class Bases {
 	//	public static void printByteArray(byte[] arr) {
 	//		for(byte b:arr) Bases.printByte(b);
 	//	}
-	private static void printByte(byte b) {
+	public static void printByte(byte b) {
 		byte b1 = (byte) b;
 		String s1 = String.format("%8s", Integer.toBinaryString(b1 & 0xFF)).replace(' ', '0');
 		System.out.println(b+" <-> "+s1);

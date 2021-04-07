@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) {		
 		if(args.length == 7) {
 			String instruction = args[0];
 			String key_path = args[2];
@@ -28,7 +28,7 @@ public class Main {
 			case "-b":
 				String msg = args[2];
 				String cipher = args[4];
-				AES2.breakAlgorithm(msg, cipher, output_path);
+				Attack.breakAES2(msg, cipher, output_path);
 				break;
 			default:
 				// code block
@@ -55,10 +55,6 @@ public class Main {
 			boolean ans = ((Test) tests.get(i)).run();
 			System.out.println("test no " + (i+1) + " " + ans);
 		}
-	}
-
-	public static void print(Object o) {
-		System.out.println(o.toString());
 	}
 
 }

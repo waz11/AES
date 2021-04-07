@@ -9,7 +9,7 @@ public class AES2 {
 		
 		BlocksList result = AES1.enc(AES1.enc(msg, key1),key2);
 		result.writeToBytesFile(path_result);
-		
+		System.out.println("Encryption Done!");
 		return result;
 	}
 	public static BlocksList dec(String path_cipher, String Path_key, String path_result) {
@@ -20,19 +20,17 @@ public class AES2 {
 
 		BlocksList result = AES1.dec(AES1.dec(cipher, key2),key1);
 		result.writeToBytesFile(path_result);
-		
+		System.out.println("Decryption Done!");
 		return result;
 	}
 
 	public static BlocksList enc(BlocksList msg, Block key1, Block key2) {
+		System.out.println("Encryption Done!");
 		return AES1.enc(AES1.enc(msg, key1),key2);
 	}
 	public static BlocksList dec(BlocksList msg, Block key1, Block key2) {
+		System.out.println("Decryption Done!");
 		return AES1.dec(AES1.dec(msg, key2),key1);
 	}
 	
-	public static BlocksList breakAlgorithm(String msg, String cipher, String output_path) {
-		BlocksList key = new BlocksList();
-		return key;
-	}
 }
