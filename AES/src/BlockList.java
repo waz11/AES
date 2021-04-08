@@ -5,16 +5,16 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BlocksList {
+public class BlockList {
 	private List<Block> blocks;
 	private int size;
 
 	//	constructors:
-	public BlocksList() {
+	public BlockList() {
 		this.blocks = new ArrayList<>();
 		this.size = 0;
 	}
-	public BlocksList(String path) {
+	public BlockList(String path) {
 		this.blocks = new ArrayList<>();
 		this.size = 0;
 
@@ -54,8 +54,8 @@ public class BlocksList {
 		this.blocks.add(block);
 		size++;
 	}
-	public BlocksList xor(Block other) {
-		BlocksList result = new BlocksList();
+	public BlockList xor(Block other) {
+		BlockList result = new BlockList();
 		for(Block block:this.blocks) {
 			result.addBlock(block.xor(other));
 		}
@@ -65,7 +65,7 @@ public class BlocksList {
 		for(Block block:this.blocks) 
 			block.swapeIndexex();
 	}
-	public boolean isEquals(BlocksList other) {
+	public boolean isEquals(BlockList other) {
 		for(int i=0; i<size; i++) {
 			if(!(this.getBlock(i).isEquals(other.getBlock(i))))
 				return false;

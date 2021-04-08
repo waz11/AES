@@ -14,15 +14,15 @@ public class Test {
 	String expected_cipher_path;
 	String result_enc_path = "./files/results/result_enc";
 	String result_dec_path = "./files/results/result_dec";
-	BlocksList expected_cipher;
-	BlocksList expected_msg;
+	BlockList expected_cipher;
+	BlockList expected_msg;
 
 	public Test(String key_path, String expected_msg_path, String expected_cipher_path) {
 		this.key_path = key_path;
 		this.expected_msg_path = expected_msg_path;
 		this.expected_cipher_path = expected_cipher_path;
-		this.expected_cipher = new BlocksList(this.expected_cipher_path);
-		this.expected_msg = new BlocksList(this.expected_msg_path);
+		this.expected_cipher = new BlockList(this.expected_cipher_path);
+		this.expected_msg = new BlockList(this.expected_msg_path);
 	}
 
 	public boolean run() {
@@ -32,17 +32,17 @@ public class Test {
 	}
 
 	public boolean test_Enc() {
-		BlocksList this_cipher = AES2.enc(expected_msg_path, key_path, result_enc_path);
+		BlockList this_cipher = AES2.enc(expected_msg_path, key_path, result_enc_path);
 //		printEnc(this_cipher);
 		return this_cipher.isEquals(this.expected_cipher);
 	}
 
 	public boolean test_Dec() {
-		BlocksList this_msg1 = AES2.dec(expected_cipher_path, key_path, result_dec_path);
+		BlockList this_msg1 = AES2.dec(expected_cipher_path, key_path, result_dec_path);
 //		printDec(this_msg1);
 		boolean ans1 = this_msg1.isEquals(this.expected_msg);
 
-		BlocksList this_msg2 = AES2.dec(result_enc_path, key_path, result_dec_path);
+		BlockList this_msg2 = AES2.dec(result_enc_path, key_path, result_dec_path);
 //		printDec(this_msg2);
 		boolean ans2 = this_msg2.isEquals(this.expected_msg);
 		
@@ -50,7 +50,7 @@ public class Test {
 	}
 
 	// prints:
-	public void printEnc(BlocksList result) {
+	public void printEnc(BlockList result) {
 		System.out.print("original cipher:  ");
 		expected_cipher.printBytes();
 
@@ -58,7 +58,7 @@ public class Test {
 		result.printBytes();
 	}
 
-	public void printDec(BlocksList result) {
+	public void printDec(BlockList result) {
 		System.out.print("original msg:  ");
 		expected_msg.printBytes();
 
