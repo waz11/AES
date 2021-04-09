@@ -133,19 +133,19 @@ public class BlockList {
 			directory.mkdir();
 		}
 		
-		String PATH2 = "./files/output/";
-		String directoryName2 = PATH2.concat("break");
-		File directory2 = new File(directoryName2);
-		if (! directory2.exists()){
-			directory2.mkdir();
-		}
-		
-		String PATH3 = "./files/output/";
-		String directoryName3 = PATH3.concat("tests");
-		File directory3 = new File(directoryName3);
-		if (! directory3.exists()){
-			directory3.mkdir();
-		}
+//		String PATH2 = "./files/output/";
+//		String directoryName2 = PATH2.concat("break");
+//		File directory2 = new File(directoryName2);
+//		if (! directory2.exists()){
+//			directory2.mkdir();
+//		}
+//		
+//		String PATH3 = "./files/output/";
+//		String directoryName3 = PATH3.concat("tests");
+//		File directory3 = new File(directoryName3);
+//		if (! directory3.exists()){
+//			directory3.mkdir();
+//		}
 	}
 
 }
