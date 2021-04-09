@@ -1,3 +1,5 @@
+package AES;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -12,11 +14,13 @@ public class Test {
 	String key_path;
 	String expected_msg_path;
 	String expected_cipher_path;
+	
 	String result_enc_path = "./files/results/result_enc";
 	String result_dec_path = "./files/results/result_dec";
+	
 	BlockList expected_cipher;
 	BlockList expected_msg;
-
+	
 	public Test(String key_path, String expected_msg_path, String expected_cipher_path) {
 		this.key_path = key_path;
 		this.expected_msg_path = expected_msg_path;

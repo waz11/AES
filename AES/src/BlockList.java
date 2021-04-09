@@ -1,3 +1,5 @@
+package AES;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -124,6 +126,13 @@ public class BlockList {
 		File directory = new File(directoryName);
 		if (! directory.exists()){
 			directory.mkdir();
+		}
+		
+		String PATH2 = "./files/output/";
+		String directoryName2 = PATH2.concat("break");
+		File directory2 = new File(directoryName2);
+		if (! directory2.exists()){
+			directory2.mkdir();
 		}
 	}
 

@@ -1,3 +1,4 @@
+package AES;
 
 public class AES2 {
 	
@@ -12,9 +13,9 @@ public class AES2 {
 		System.out.println("...Encryption Done!");
 		return result;
 	}
-	public static BlockList dec(String path_cipher, String Path_key, String path_result) {
+	public static BlockList dec(String path_cipher, String path_key, String path_result) {
 		BlockList cipher = new BlockList(path_cipher);
-		BlockList key = new BlockList(Path_key);
+		BlockList key = new BlockList(path_key);
 		Block key1 = key.getBlock(0);
 		Block key2 = key.getBlock(1);
 
