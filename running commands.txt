@@ -7,7 +7,7 @@ Java –jar aes.jar -d -k ./files/key_long -i ./files/cipher_long -o ./files/out
 Java –jar aes.jar -d -k ./files/key_short -i ./files/output/enc_short -o ./files/output/dec_short
 Java –jar aes.jar -d -k ./files/key_long -i ./files/output/enc_long -o ./files/output/dec_long
 -----------------------------------------------------------------------------------------------------------------
-Java –jar aes.jar -d -k ./files/key_short -i ./files/new_cipher_short -o ./files/output/dec_short
+Java –jar aes.jar -d -k ./files/key_short -i ./files/new_cipher_short -o ./files/output/new_dec_short
 -----------------------------------------------------------------------------------------------------------------
 Java –jar aes.jar -b -m ./files/message_short -c ./files/cipher_short -o ./files/output/attack_key_short
 Java –jar aes.jar -d -k ./files/output/attack_key_short -i ./files/new_cipher_short -o ./files/output/attack_dec_new_msg_short
