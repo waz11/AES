@@ -9,63 +9,50 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class Test {
-	String key_path;
-	String expected_msg_path;
-	String expected_cipher_path;
+	private BlockList keys;
+	private BlockList expected_msg;
+	private BlockList expected_cipher;
 	
-	String result_enc_path = "./files/results/result_enc";
-	String result_dec_path = "./files/results/result_dec";
+	private BlockList enc;
+	private BlockList dec;
 	
-	BlockList expected_cipher;
-	BlockList expected_msg;
-	
+	private Block key1;
+	private Block key2;
+
 	public Test(String key_path, String expected_msg_path, String expected_cipher_path) {
-		this.key_path = key_path;
-		this.expected_msg_path = expected_msg_path;
-		this.expected_cipher_path = expected_cipher_path;
-		this.expected_cipher = new BlockList(this.expected_cipher_path);
-		this.expected_msg = new BlockList(this.expected_msg_path);
+		this.keys = new BlockList(key_path);
+		this.expected_msg = new BlockList(expected_msg_path);
+		this.expected_cipher = new BlockList(expected_cipher_path);
+		this.key1 = keys.getBlock(0);
+		this.key2 = keys.getBlock(1);
 	}
 
 	public boolean run() {
-		boolean ans1 = test_Enc();
-		boolean ans2 = test_Dec();
-		return ans1 && ans2;
+		BlockList msg = new BlockList(this.expected_msg);
+		enc = AES2.enc(msg, this.key1, this.key2);
+		BlockList cipher = new BlockList(this.expected_cipher);
+		dec = AES2.dec(cipher, this.key1, this.key2);
+		boolean t1 = enc.isEquals(this.expected_cipher);
+		boolean t2 = dec.isEquals(this.expected_msg);
+		return t1 && t2;
 	}
 
-	public boolean test_Enc() {
-		BlockList this_cipher = AES2.enc(expected_msg_path, key_path, result_enc_path);
-//		printEnc(this_cipher);
-		return this_cipher.isEquals(this.expected_cipher);
-	}
-
-	public boolean test_Dec() {
-		BlockList this_msg1 = AES2.dec(expected_cipher_path, key_path, result_dec_path);
-//		printDec(this_msg1);
-		boolean ans1 = this_msg1.isEquals(this.expected_msg);
-
-		BlockList this_msg2 = AES2.dec(result_enc_path, key_path, result_dec_path);
-//		printDec(this_msg2);
-		boolean ans2 = this_msg2.isEquals(this.expected_msg);
-		
-		return ans1 && ans2;
-	}
 
 	// prints:
 	public void printEnc(BlockList result) {
 		System.out.print("original cipher:  ");
-		expected_cipher.printBytes();
+		expected_cipher.printChars();
 
 		System.out.print("this cipher:      ");
-		result.printBytes();
+		result.printChars();
 	}
 
 	public void printDec(BlockList result) {
 		System.out.print("original msg:  ");
-		expected_msg.printBytes();
+		expected_msg.printChars();
 
 		System.out.print("this msg:      ");
-		result.printBytes();
+		result.printChars();
 	}
 
 

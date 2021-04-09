@@ -13,6 +13,7 @@ import java.util.List;
 public class Main {
 
 	public static void main(String[] args) {
+//		test();
 		if(args.length == 7) {
 			String instruction = args[0];
 			String key_path = args[2];
@@ -22,14 +23,18 @@ public class Main {
 			switch(instruction.toLowerCase()) {
 			case "-e":
 				AES2.enc(input_path, key_path, output_path);
+				System.out.println("message encripted to: '"+output_path+"'");
 				break;
 			case "-d":
 				AES2.dec(input_path, key_path, output_path);
+				System.out.println("cipher decripted to: '"+output_path+"'");
 				break;
 			case "-b":
 				String msg = args[2];
 				String cipher = args[4];
-				Attack.breakAES2(msg, cipher, output_path);
+				Attack attack = new Attack(msg, cipher);
+				attack.breakAES2(output_path);
+				System.out.println("AES was broken, you can find the keys on: '"+output_path+"'");
 				break;
 			default:
 				// code block
@@ -38,7 +43,7 @@ public class Main {
 		else test();
 	}
 
-
+	
 	public static void test() {
 		String message_short = "./files/message_short";
 		String message_long = "./files/message_long";
@@ -52,16 +57,13 @@ public class Main {
 		tests.add(new Test(key_short, message_short, cipher_short));
 		tests.add(new Test(key_long, message_long, cipher_long));
 
-		System.out.println("Testing - 2 tests of Enc & Dec: ");
 		for(int i=0 ; i<tests.size(); i++) {
 			boolean ans = tests.get(i).run();
-			System.out.println("Test no " + (i+1) + " " + ans+"\n");
+			System.out.println("Test no " + (i+1) + " " + ans);
 		}
-
-		// test breaking:
-		String breaking = "./files/output/break/fake_keys";
-		Attack.breakAES2(message_short, message_short, breaking);
-		boolean res = Attack.test();
-		System.out.println("break result: "+ res);
+		
+		
+		
+		
 	}
 }

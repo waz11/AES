@@ -9,8 +9,19 @@ public class Block {
 	private int lastCol;
 
 	public Block() {
-		this.values = new String[4][4];
+		this.values = new String[rows][cols];
 		this.lastRow = 0; this.lastCol = 0;
+	}
+	
+	public Block(Block other) {
+		this.values = new String[rows][cols];
+		this.lastRow = 0; this.lastCol = 0;
+		for(int row=0; row<this.rows; row++) {
+			for(int col=0; col<this.cols; col++) {
+				this.values[row][col] = other.getValue(row, col);
+			}
+		}
+		
 	}
 
 	//	operations:

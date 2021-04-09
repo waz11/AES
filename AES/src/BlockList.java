@@ -14,6 +14,14 @@ public class BlockList {
 		this.blocks = new ArrayList<>();
 		this.size = 0;
 	}
+	
+	public BlockList(BlockList other) {
+		this.blocks = new ArrayList<>();
+		this.size = 0;
+		for(Block block:other.blocks)
+			this.blocks.add(new Block(block));
+	}
+	
 	public BlockList(String path) {
 		this.blocks = new ArrayList<>();
 		this.size = 0;
@@ -83,7 +91,7 @@ public class BlockList {
 			i++;
 		}
 	}
-	public void printBytes() {
+	public void printChars() {
 		for(int i=0; i<this.size; i++) {
 			byte[] b = this.getBlock(i).blockToBytes();
 			Bases.printBytes(b);
