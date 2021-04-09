@@ -80,7 +80,6 @@ public class BlockList {
 		}
 		return true;
 	}
-
 	
 	//	prints:
 	public void print() {
@@ -139,6 +138,13 @@ public class BlockList {
 		File directory2 = new File(directoryName2);
 		if (! directory2.exists()){
 			directory2.mkdir();
+		}
+		
+		String PATH3 = "./files/output/";
+		String directoryName3 = PATH3.concat("tests");
+		File directory3 = new File(directoryName3);
+		if (! directory3.exists()){
+			directory3.mkdir();
 		}
 	}
 

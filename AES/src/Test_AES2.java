@@ -8,33 +8,45 @@ import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class Test {
-	private BlockList keys;
+public class Test_AES2 {
+	private String keys_path;
+	private String expected_msg_path;
+	private String expected_cipher_path;
+
 	private BlockList expected_msg;
 	private BlockList expected_cipher;
 	
-	private BlockList enc;
-	private BlockList dec;
-	
-	private Block key1;
-	private Block key2;
+	private String enc_result_path;
+	private String dec_result_path;
 
-	public Test(String key_path, String expected_msg_path, String expected_cipher_path) {
-		this.keys = new BlockList(key_path);
+	public Test_AES2(String key_path, String expected_msg_path, String expected_cipher_path) {
+		this.keys_path = key_path;
+		this.expected_msg_path = expected_msg_path;
+		this.expected_cipher_path = expected_cipher_path;
+
 		this.expected_msg = new BlockList(expected_msg_path);
 		this.expected_cipher = new BlockList(expected_cipher_path);
-		this.key1 = keys.getBlock(0);
-		this.key2 = keys.getBlock(1);
+		
+		this.enc_result_path = "./files/output/tests/enc_result";
+		this.dec_result_path = "./files/output/tests/dec_result";
+
 	}
 
+
 	public boolean run() {
-		BlockList msg = new BlockList(this.expected_msg);
-		enc = AES2.enc(msg, this.key1, this.key2);
-		BlockList cipher = new BlockList(this.expected_cipher);
-		dec = AES2.dec(cipher, this.key1, this.key2);
-		boolean t1 = enc.isEquals(this.expected_cipher);
-		boolean t2 = dec.isEquals(this.expected_msg);
-		return t1 && t2;
+		AES2.enc(this.expected_msg_path, this.keys_path, this.enc_result_path);
+		boolean enc_test = isEquals(this.expected_cipher_path, this.enc_result_path);
+		
+		AES2.dec(this.expected_cipher_path, this.keys_path, this.dec_result_path);
+		boolean dec_test = isEquals(this.expected_msg_path, dec_result_path);
+		
+		return enc_test && dec_test;
+	}
+
+	private boolean isEquals(String block1_path, String block2_path) {
+		BlockList b1 = new BlockList(block1_path);
+		BlockList b2 = new BlockList(block2_path);
+		return b1.isEquals(b2);
 	}
 
 
@@ -78,5 +90,12 @@ public class Test {
 			//			Bases.printCharsByBytesFile(bytes);
 			Bases.printBytesDetails(bytes);
 		}catch (Exception e) {}
+	}
+	
+	
+	private void printBlockList(String path) {
+		BlockList b = new BlockList(path);
+//		b.printChars();
+		b.print();
 	}
 }

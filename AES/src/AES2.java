@@ -1,8 +1,8 @@
 public class AES2 {
 	
-	public static BlockList enc(String path_msg, String Path_key, String path_result) {
+	public static BlockList enc(String path_msg, String path_key, String path_result) {
 		BlockList msg = new BlockList(path_msg);
-		BlockList key = new BlockList(Path_key);
+		BlockList key = new BlockList(path_key);
 		Block key1 = key.getBlock(0);
 		Block key2 = key.getBlock(1);
 		
