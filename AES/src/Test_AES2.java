@@ -93,9 +93,9 @@ public class Test_AES2 {
 	}
 	
 	
-	private void printBlockList(String path) {
-		BlockList b = new BlockList(path);
-//		b.printChars();
-		b.print();
-	}
+//	private void printBlockList(String path) {
+//		BlockList b = new BlockList(path);
+////		b.printChars();
+//		b.print();
+//	}
 }
