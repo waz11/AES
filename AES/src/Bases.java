@@ -1,8 +1,7 @@
-package AES;
-
 import java.nio.charset.StandardCharsets;
 
 public class Bases {
+	
 	//	**CONVERTINGS:
 	public static String byteToHex(byte b) {
 		return Integer.toHexString(b & 0xff);

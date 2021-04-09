@@ -1,5 +1,3 @@
-package AES;
-
 public class AES1 {
 	
 	public static BlockList enc(BlockList msg, Block key) {

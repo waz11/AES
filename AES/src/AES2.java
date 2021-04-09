@@ -1,5 +1,3 @@
-package AES;
-
 public class AES2 {
 	
 	public static BlockList enc(String path_msg, String Path_key, String path_result) {

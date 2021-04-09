@@ -1,5 +1,6 @@
-package AES;
+
 public class Block {
+	
 	private String[][] values;
 	private int rows = 4;
 	private int cols = 4;
